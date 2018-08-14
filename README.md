@@ -1,0 +1,2 @@
+# automatedGitProcess
+Automated git process.
