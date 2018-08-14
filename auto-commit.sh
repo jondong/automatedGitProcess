@@ -8,6 +8,6 @@ function random_range() {
 
 for i in {1..5}; do
   rand_num=$(random_range 1 65535)
-  echo $rand_num >> README.md
+  echo "$* $rand_num" >> LOG.md
   git commit -a -m "$* $rand_num"
 done
