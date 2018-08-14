@@ -43,6 +43,12 @@ fi
 
 stashLocalChanges
 
+beta_branch=$(git branch -r | awk '/'"$remote"'\/beta$/ {print $1}')
+if [ ! "$beta_branch" ]; then
+  error "Failed to find ${YELLOW}beta${RESTORE} branch on $remote, create it first before release."
+  exit 1
+fi
+
 info "Merge beta release commit to beta branch...\n"
 git checkout -B beta "$remote/beta"
 git merge -q --no-summary --no-ff $latest_sha -m "Merge beta release: $beta_ver" --signoff
